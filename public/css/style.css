@@ -6,6 +6,85 @@
     font-family: 'Poppins',sans-serif;
     scroll-behavior: smooth;
 }
+.scroll-up-btn{
+    position: fixed;
+    height: 45px;
+    width: 42px;
+    background: #009e66;
+    right: 30px;
+    bottom: 10px;
+    text-align: center;
+    line-height: 45px;
+    color: white;
+    z-index: 9999;
+    font-size: 30px;
+    border-radius: 6px;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+.scroll-up-btn.show{
+    opacity: 1;
+    pointer-events: auto;
+    bottom: 30px;
+}
+::-webkit-scrollbar{
+    width: 0;
+}
+.scrollPath{
+    position: fixed;
+    top:0;
+    right: 0;
+    width: 10px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.05);
+}
+#progressBar{
+    position: fixed;
+    top:0;
+    right: 0;
+    width: 10px;
+    /* background: linear-gradient(to top, #008aff,#00ffe7); */
+    background: #009e66;
+    animation: animate 5s  infinite;
+}
+@keyframes animate{
+    0%,100%
+{
+    filter: hue-rotate(0deg);
+}
+    50%
+{
+    filter: hue-rotate(0deg);
+}
+}
+#progressBar::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background: linear-gradient(to top, #008aff,#00ffe7); */
+    background: #009e66;
+
+    /* filter:blur(10px); */
+}
+#progressBar::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background: linear-gradient(to top, #008aff,#00ffe7); */
+    background: #009e66;
+
+    /* filter:blur(30px); */
+
+}
+
 header{
     position:fixed;
     top:0;
@@ -45,6 +124,9 @@ header ul li a{
     color:#fff;
     text-decoration: none;
 }
+header ul li a:hover{
+    color: #009e66;
+}
 /* Creating Stiky Header Menu Nav Bar */
 header.sticky{
     background:#fff;
@@ -63,10 +145,10 @@ section{
     padding:80px;
 }
 .banner{
-    position:relative;
+    position: relative;
     min-height: 100vh;
     background:#111;
-    background:url(images/banner.jpg);
+    background:url(/images/banner.jpg);
     background-size:cover;
     background-position: right;
     display:flex;
@@ -89,6 +171,10 @@ section{
     font-size: 1.5em;
     font-weight: 500;
 }
+.banner h3 span{
+    color: #009e66;
+    font-size: 1.5em;
+}
 .btn{
     position:relative;
     background:#009e66;
@@ -101,6 +187,42 @@ section{
     text-decoration: none;
     letter-spacing: 2px;
     font-weight: 500;
+    transition: .6s;
+    overflow: hidden;
+}
+.btn::before{
+    content: '';
+    display: inline-block;
+    position: absolute;
+    background: #009e66;
+    filter: blur(30px);
+    transform: translateX(-130px) skewX(-15deg);
+}
+.btn::after{
+    content: '';
+    display: inline-block;
+    position: absolute;
+    background: #009e66;
+    filter: blur(30px);
+    transform: translateX(-100px) skewX(-15deg);
+    opacity: 0;
+}
+.banner .textBx .btn:hover{
+    background:none;
+    cursor: pointer;
+    border: 1px solid #009e66;
+    color: white;
+}
+
+.btn:hover::before{
+    transform: translateX(300px) skewX(-15deg);
+    opacity: .6;
+    transition: .7s;
+}
+.btn:hover::after{
+    transform: translateX(300px) skewX(-15deg);
+    opacity: 1;
+    transition: .7s;
 }
     /* Creating About Layout */
 .content{
@@ -129,6 +251,9 @@ section{
 .contentBx h2{
     font-weight: 300;
     margin-bottom: 10px;
+}
+.contentBx span{
+    color: #009e66;
 }
 .proPic{
     width:300px;
@@ -162,9 +287,15 @@ section{
 img{
     max-width:100%;
 }
-
-
-
+.about .content a{
+    color: white;
+}
+.about .content a:hover{
+    background:none;
+    cursor: pointer;
+    border: 1.5px solid #009e66;
+    color: black;
+}
 .services{
     background:#111;
 }
@@ -189,11 +320,54 @@ img{
     border-bottom:2px solid #009e66;
     cursor:pointer;
 }
-.services .content .servicesBx .fa{
+.services .content .servicesBx:nth-child(1) .fa{
     margin-bottom: 10px;
-    color:#009e66;
+    color:#264de4;
 }
-
+.services .content .servicesBx:nth-child(1):hover .fa{
+    text-shadow: 0 0 15px #264de4;
+    transition: all 0.5s ease;
+}
+.services .content .servicesBx:nth-child(2) .fa{
+    margin-bottom: 10px;
+    color:#21759b;
+}
+.services .content .servicesBx:nth-child(2):hover .fa{
+    text-shadow: 0 0 15px #21759b;
+    transition: all 0.5s ease;
+}
+.services .content .servicesBx:nth-child(3) .fa{
+    margin-bottom: 10px;
+    color:#6daabb;
+}
+.services .content .servicesBx:nth-child(3):hover .fa{
+    text-shadow: 0 0 15px #6daabb;
+    transition: all 0.5s ease;
+}
+.services .content .servicesBx:nth-child(4) .fa{
+    margin-bottom: 10px;
+    color:grey;
+}
+.services .content .servicesBx:nth-child(4):hover .fa{
+    text-shadow: 0 0 15px grey;
+    transition: all 0.5s ease;
+}
+.services .content .servicesBx:nth-child(5) .fa{
+    margin-bottom: 10px;
+    color:#3ddc84;
+}
+.services .content .servicesBx:nth-child(5):hover .fa{
+    text-shadow: 0 0 15px #3ddc84;
+    transition: all 0.5s ease;
+}
+.services .content .servicesBx:nth-child(6) .fa{
+    margin-bottom: 10px;
+    color:grey;
+}
+.services .content .servicesBx:nth-child(6):hover .fa{
+    text-shadow: 0 0 15px grey;
+    transition: all 0.5s ease;
+}
 /* Creating Work Layout in CSS */
 .work .content{
     display:flex;
@@ -234,7 +408,16 @@ img{
     text-decoration: none;
     font-weight: 600;
 }
-
+.work .content .heading button{
+    color: white;
+}
+.work .content .heading button:hover{
+    background:none;
+    cursor: pointer;
+    border: 1.5px solid #009e66;
+    color: black;
+    
+}
 /* Creating Testimonial Layout in CSS */
 .testimonial{
     background:#111;
@@ -319,7 +502,7 @@ img{
 .formBx form textarea::placeholder{
     color:#999;
 }
-.formBx form input[type="submit"]{
+.formBx form .btn{
     background:#009e66;
     max-width:250px;
     cursor:pointer;
@@ -330,6 +513,12 @@ img{
     -moz-border-radius: 50px;
     -ms-border-radius: 50px;
     -o-border-radius: 50px;
+    resize: none;
+}
+.formBx form .btn:hover{
+    background:none;
+    cursor: pointer;
+    border: 1px solid #009e66;
 }
 .contactInfo{
     min-width:40%;
@@ -374,14 +563,51 @@ img{
     display:flex;
     flex-direction:row;
     letter-spacing: 15px;
-    padding-left:60px;
+    padding-left:10px;
 }
 .contactInfoBx .boxSocial .fa{
-    color:#009e66;
+    color: white;
     font-size: 42px;
     cursor:pointer;
-    
+    padding: 10px;
 }
+.contactInfoBx .boxSocial .fa-facebook{
+    color: #3b5998;
+}
+
+.contactInfoBx .boxSocial .facebook:hover .fa-facebook{
+    color: #3b5998;
+    text-shadow: 0 0 15px #3b5998;
+    transition: all 0.5s ease;
+}
+.contactInfoBx .boxSocial .fa-twitter{
+    color: #00aced;
+}
+
+.contactInfoBx .boxSocial .twitter:hover .fa-twitter{
+    color: #00aced;
+    text-shadow: 0 0 15px #00aced;
+    transition: all 0.5s ease;
+}
+.contactInfoBx .boxSocial .fa-linkedin{
+    color: #2867b2;
+}
+
+.contactInfoBx .boxSocial .linkedin:hover .fa-linkedin{
+    color: #2867b2;
+    text-shadow: 0 0 15px #2867b2;
+    transition: all 0.5s ease;
+}
+.contactInfoBx .boxSocial .fa-instagram{
+    color: #bc2a8d;
+}
+
+.contactInfoBx .boxSocial .instagram:hover .fa-instagram{
+    color:#bc2a8d;
+    text-shadow: 0 0 15px #bc2a8d;
+    transition: all 0.5s ease;
+}
+
 footer.copyright{
     background:#000;
     color:#fff;
@@ -436,7 +662,7 @@ footer.copyright{
     .toggle{
         width:40px;
         height:40px;
-        background:url(images/menu.png);
+        background:url(/images/menu.png);
         background-position:center;
         background-size:30px;
         background-repeat:no-repeat;
@@ -445,7 +671,7 @@ footer.copyright{
     .toggle.active{
         width:40px;
         height:40px;
-        background:url(images/close.png);
+        background:url(/images/close.png);
         background-position:center;
         background-size:25px;
         background-repeat:no-repeat;
@@ -465,8 +691,9 @@ footer.copyright{
         font-size: 1.5em;
     }
     .banner h3{
-        font-size: 1em;;
+        font-size: 1.5em;
     }
+    
     .textBx{
         position:relative;
         top:170px;

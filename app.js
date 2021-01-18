@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const app = express();
+app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 //mongoose.connect("mongodb://localhost:27017/portfolio",{ useNewUrlParser: true,useUnifiedTopology: true })
@@ -14,7 +15,7 @@ const portfolioSchema = {
   
 const Item = mongoose.model("Item", portfolioSchema);
 
-app.post("/", function(req, res){
+app.post("/form", function(req, res){
 
     const itemName = req.body.name;
     const itemEmail = req.body.email;
@@ -28,6 +29,13 @@ app.post("/", function(req, res){
     item.save();
     res.redirect("/");
 })
+app.get("/work",(req,res)=>{
+    res.render("work")
+})
+app.post('/work',(req,res)=>{
+  res.redirect("/work")
+})
 
 
-app.listen(process.env.PORT,3000);
+//app.listen(process.env.PORT,3000);
+app.listen(3000)
